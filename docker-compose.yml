@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+    doctrine_app:
+        container_name: doctrine_app_server
+        build:
+          context: ./resources/docker/apache
+          dockerfile: Dockerfile
+        volumes:
+          - ./:/var/www/html
+        ports:
+          - ${DOCKER_HTTP_PORT}:80
+        depends_on:
+          - doctrine_db
+    doctrine_db:
+      container_name: doctrine_db_server
+      build:
+        context: ./resources/docker/mysql
+        dockerfile: Dockerfile
+      volumes:
+       - /etc/timezone:/etc/timezone:ro
+       - /etc/localtime:/etc/localtime:ro
+       - doctrine-mysql-data:/var/lib/mysql
+       - ./resources/database/:/docker-entrypoint-initdb.d
+      ports:
+        - ${DOCKER_DB_PORT}:3306
+      environment:
+       - DB_HOST=doctrine_db_server
+       - MYSQL_ROOT_PASSWORD=doctrine
+       - MYSQL_DATABASE=dev_doctrine
+       - MYSQL_USER=developers
+       - MYSQL_PASSWORD=doctrine
+volumes:
+  doctrine-mysql-data:

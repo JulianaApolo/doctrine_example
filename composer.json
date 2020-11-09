@@ -1,0 +1,30 @@
+{
+	"name": "folha/doctrine",
+	"description": "Exemplo doctrine",
+	"type": "project",
+	"license": "proprietary",
+	"autoload": {
+		"classmap": [
+			"src/"
+		]
+	},
+	"require": {
+		"php": "7.3.*",
+		"ext-curl": "*",
+		"ext-json": "*",
+		"vlucas/phpdotenv": "2.6.5",
+		"doctrine/orm": "^2.7",
+		"fzaninotto/faker": "^1.9"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "3.*"
+	},
+	"config": {
+		"github-oauth": {
+			"github.com": "621b94f0063776beee373ab7d508d4341ff1c477"
+		}
+	},
+	"scripts": {
+		"phpcbf": "vendor/bin/phpcbf --standard=PSR1,PSR2 --ignore=*/templates/* --extensions=php src"
+	}
+}

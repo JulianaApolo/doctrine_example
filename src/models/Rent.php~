@@ -1,0 +1,87 @@
+<?php
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="rents")
+ */
+class Rent extends BaseModel
+{
+    /** 
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="datetime",name="rent_date",nullable=false)
+     * @var DateTime
+     */
+    protected $rentDate;
+
+    /**
+     * @ORM\Column(type="datetime",name="return_date")
+     * @var DateTime
+     */
+    protected $returnDate;
+   
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set rentDate.
+     *
+     * @param \DateTime $rentDate
+     *
+     * @return Rent
+     */
+    public function setRentDate($rentDate)
+    {
+        $this->rentDate = $rentDate;
+
+        return $this;
+    }
+
+    /**
+     * Get rentDate.
+     *
+     * @return \DateTime
+     */
+    public function getRentDate()
+    {
+        return $this->rentDate;
+    }
+
+    /**
+     * Set returnDate.
+     *
+     * @param \DateTime $returnDate
+     *
+     * @return Rent
+     */
+    public function setReturnDate($returnDate)
+    {
+        $this->returnDate = $returnDate;
+
+        return $this;
+    }
+
+    /**
+     * Get returnDate.
+     *
+     * @return \DateTime
+     */
+    public function getReturnDate()
+    {
+        return $this->returnDate;
+    }
+}
