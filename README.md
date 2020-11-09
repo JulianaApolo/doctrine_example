@@ -1,6 +1,6 @@
 # Exemplo de uso do ORM doctrine
 
-##Instalação do ambiente
+## Instalação do ambiente
 Copie o .env_example e altere as configurações:
 ```
 cp .env_example .env
