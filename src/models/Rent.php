@@ -1,6 +1,10 @@
 <?php
+namespace Models;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks as HasLifecycleCallbacks;
+use Models\Vehicle;
+use Models\Customer;
 
 /**
  * @ORM\Entity

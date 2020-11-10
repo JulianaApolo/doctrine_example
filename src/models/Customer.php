@@ -1,7 +1,10 @@
 <?php
+namespace Models;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks as HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
+use Models\Rent;
 
 /**
  * @ORM\Entity

@@ -1,4 +1,6 @@
 <?php
+namespace Models;
+
 use Doctrine\ORM\Mapping as ORM;
 
 class BaseModel
@@ -24,13 +26,13 @@ class BaseModel
     /** @ORM\PrePersist */
     public function doStuffOnPrePersist()
     {
-        $this->setCreationDate(new DateTime("now"));
+        $this->setCreationDate(new \DateTime("now"));
     }
 
     /** @ORM\PreUpdate */
     public function doStuffOnPreUpdate()
     {
-        $this->setModificationDate(new DateTime("now"));
+        $this->setModificationDate(new \DateTime("now"));
     }
 
     public function populate(array $values)

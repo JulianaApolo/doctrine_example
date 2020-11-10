@@ -1,11 +1,13 @@
 <?php
+namespace Models;
+
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\HasLifecycleCallbacks as HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
+use Models\Model;
 
 /**
  * @ORM\Entity
- * @HasLifecycleCallbacks
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="brands")
  */
 class Brand extends BaseModel
@@ -60,7 +62,7 @@ class Brand extends BaseModel
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeModel(\Model $model)
+    public function removeModel(Model $model)
     {
         return $this->models->removeElement($model);
     }

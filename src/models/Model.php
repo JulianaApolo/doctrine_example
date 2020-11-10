@@ -1,7 +1,11 @@
 <?php
+namespace Models;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks as HasLifecycleCallbacks;
 use Doctrine\Common\Collections\ArrayCollection;
+use Models\Vehicle;
+use Models\Brand;
 
 /**
  * @ORM\Entity
@@ -76,7 +80,7 @@ class Model extends BaseModel
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeVehicle(\Vehicle $vehicle)
+    public function removeVehicle(Vehicle $vehicle)
     {
         return $this->vehicles->removeElement($vehicle);
     }

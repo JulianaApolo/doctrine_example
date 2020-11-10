@@ -1,18 +1,24 @@
 <?php
 
-require("./scripts/util.inc.php") ;
-require("./scripts/init.inc.php") ;
+require("./scripts/util.inc.php");
+require("./scripts/init.inc.php");
+
+use Models\Brand;
+use Models\Customer;
+use Models\Model;
+use Models\Rent;
+use Models\Vehicle;
+
+$faker = Faker\Factory::create("pt_BR");
 
 try {
     //Inicia transação. Se tudo ok, o flush e o commit são feitos.
-    $entityManager->transactional(function ($entityManager) {
-        $faker = Faker\Factory::create("pt_BR");
+    $entityManager->transactional(function ($entityManager) use ($faker) {
+        
         
         //Cria marca
         $data = [
-            "description" => ucfirst($faker->word),
-            // "creationDate" => new DateTime("now"),
-            // "modificationDate" => new DateTime("now")
+            "description" => ucfirst($faker->word)
         ];
         $brand = new Brand();
         $brand->populate($data);
@@ -23,9 +29,7 @@ try {
         //Cria o modelo
         $data = [
             "description" => ucfirst($faker->word),
-            "brand" => $brand,
-            // "creationDate" => new DateTime("now"),
-            // "modificationDate" => new DateTime("now")
+            "brand" => $brand
         ];
         $model = new Model();
         $model->populate($data);
@@ -35,9 +39,7 @@ try {
 
         //Cria o cliente
         $data = [
-            "name" => sprintf("%s %s", $faker->firstName, $faker->lastName),
-            // "creationDate" => new DateTime("now"),
-            // "modificationDate" => new DateTime("now")
+            "name" => sprintf("%s %s", $faker->firstName, $faker->lastName)
         ];
         $customer = new Customer();
         $customer->populate($data);
@@ -49,8 +51,7 @@ try {
         $data = [
             "licensePlate" => strtoupper($faker->bothify("???####")),
             "model" => $model,
-            "creationDate" => new DateTime("now"),
-            // "modificationDate" => new DateTime("now")
+            "creationDate" => new \DateTime("now")
         ];
         $vehicle = new Vehicle();
         $vehicle->populate($data);
@@ -62,9 +63,7 @@ try {
         $data = [
             "vehicle" => $vehicle,
             "customer" => $customer,
-            "rentDate" => new DateTime("now"),
-            // "creationDate" => new DateTime("now"),
-            // "modificationDate" => new DateTime("now")
+            "rentDate" => new \DateTime("now")
         ];
         $rent = new Rent();
         $rent->populate($data);
@@ -73,11 +72,14 @@ try {
         printf("Aluguel para o cliente <b>%s</b> e veículo <b>%s</b> efetuado<br>", $customer->getName(), $vehicle->getLicensePlate());
     });
 
-    $brand = $entityManager->find('Brand', 2);
-    $brand->setDescription("teste");
+    $brand = $entityManager->find('Models\Brand', 1);
+    $oldName = $brand->getDescription();
+    $newName = ucfirst($faker->word);
+    $brand->setDescription($newName);
     $entityManager->persist($brand);
     $entityManager->flush();
 
+    printf("Marca <b>%s</b> alterada para <b>%s</b><br>", $oldName, $newName);
 } catch (\Exception $e) {
     print($e);
 }
