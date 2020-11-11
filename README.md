@@ -16,14 +16,14 @@ Para acessar o container da aplicação utilize:
 docker-compose exec doctrine_app bash
 ```
 
-Crie as tabelas no banco de dados com o comando abaixo, dentro do container:
-```
-vendor/bin/doctrine orm:schema-tool:create
-```
-
 Rode o composer, dentro do container:
 ```
 make install
+```
+
+Crie as tabelas no banco de dados com o comando abaixo, dentro do container:
+```
+vendor/bin/doctrine orm:schema-tool:create
 ```
 
 ## Rodando a aplicação
